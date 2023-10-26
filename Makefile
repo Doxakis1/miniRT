@@ -6,7 +6,7 @@
 #    By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/05 13:30:50 by rmakinen          #+#    #+#              #
-#    Updated: 2023/10/26 10:10:10 by mkaratzi         ###   ########.fr        #
+#    Updated: 2023/10/26 11:23:46 by mkaratzi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,7 @@ LIB_DIR = includes
 
 #DEBUG = -g -fsanitize=address,undefined
 
-FLAGS = -Wall -Wextra -Werror -O2
+FLAGS = -Wall -Wextra -Werror -O3
 
 SPECULAR = -D SPECULAR=1
 
