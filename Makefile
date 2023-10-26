@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+         #
+#    By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/05 13:30:50 by rmakinen          #+#    #+#              #
-#    Updated: 2023/10/23 08:23:55 by rmakinen         ###   ########.fr        #
+#    Updated: 2023/10/26 10:10:10 by mkaratzi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = miniRT
 SRC = main.c \
-		handle_window.c \
+		create_output_file.c \
 		scene.c \
 		vectors/vector_math.c \
 		vectors/vector_math2.c \
@@ -41,7 +41,7 @@ SRC = main.c \
 		check_camera_pos.c \
 
 OBJ = main.o \
-		handle_window.o \
+		create_output_file.o \
 		scene.o \
 		vector_math.o \
 		vector_math2.o \
@@ -86,14 +86,14 @@ all: $(NAME)
 $(NAME): $(SRC) $(INCL)
 	@cd libft && $(MAKE)
 	@cc $(FLAGS) -c $(SRC)
-	#@cc $(FLAGS) $(OBJ) -I$(LIB_DIR) libft/libft.a -L /usr/local/include -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-	@cc $(FLAGS) $(OBJ) libft/libft.a mlx/libmlx.a -framework OpenGL -framework AppKit -o $(NAME)
+	#@cc $(FLAGS) $(OBJ) -I$(LIB_DIR) libft/libft.a -L /usr/local/include -o $(NAME)
+	@cc $(FLAGS) $(OBJ) libft/libft.a -o $(NAME)
 
 specular: $(SRC) $(INCL)
 	@cd libft && $(MAKE)
 	@cc $(FLAGS) $(SPECULAR) -c $(SRC)
-	#@cc $(FLAGS) $(OBJ) -I$(LIB_DIR) libft/libft.a -L /usr/local/include -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-  @cc $(FLAGS) $(OBJ) libft/libft.a mlx/libmlx.a -framework OpenGL -framework AppKit -o $(NAME)
+	#@cc $(FLAGS) $(OBJ) -I$(LIB_DIR) libft/libft.a -L /usr/local/include -o $(NAME)
+	@cc $(FLAGS) $(OBJ) libft/libft.a -o $(NAME)
 
 clean:
 	@cd libft && make clean

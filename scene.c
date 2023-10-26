@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 09:44:07 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/10/19 09:05:51 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/10/26 10:50:42 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,25 @@ int	per_pixel(t_camera *cam, t_scene *img, int x, int y)
 	return (0);
 }
 
+static void pixel_to_file(int color, const int fd)
+{
+	char	*color_str;
+	u_int8_t holder;
+	
+	color_str = (char *)&color;
+	printf("%x\n", color);
+	holder = color_str[1];
+	ft_putnbr_fd(holder, fd);
+	ft_putstr_fd(" ", fd);
+	holder = color_str[2];
+	ft_putnbr_fd(holder, fd);
+	ft_putstr_fd(" ", fd);
+	holder = color_str[3];
+	ft_putnbr_fd(holder, fd);
+	ft_putstr_fd(" \n", fd);
+	return ;
+}
+
 int	raytrace(t_scene *img)
 {
 	t_camera	cam;
@@ -102,7 +121,8 @@ int	raytrace(t_scene *img)
 	x = 0;
 	y = 0;
 	cam = img->camera;
-	handle_window(img);
+	if (create_output_file(img))
+		return (ft_print_error("Failed to make output file! :c\n"));
 	set_id(img);
 	while (y < img->height)
 	{
@@ -110,7 +130,8 @@ int	raytrace(t_scene *img)
 		while (x < img->width)
 		{
 			color = per_pixel(&cam, img, x, y);
-			mlx_pixel_put(img->mlx, img->win, x, y, color);
+			pixel_to_file(color, img->output_fd);
+			//R G B \n
 			x++;
 		}
 		y++;

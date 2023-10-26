@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 10:29:32 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/10/20 10:17:48 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/10/26 10:20:06 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,7 @@ int	main(int argc, char **argv)
 			if (scene.error_catcher || check_camera(&scene))
 				return_parser_error(scene.error_catcher);
 			else
-			{
 				raytrace(&scene);
-				mlx_loop(scene.mlx);
-			}
 		}
 		else
 			return (ft_print_error("Error\nWrong filename\n"));
@@ -54,5 +51,6 @@ int	main(int argc, char **argv)
 		return (ft_print_error("Error\nOne map.rt expected as argument\n"));
 	if (scene.objects != NULL)
 		free_all_objects(scene.objects, 0);
+	close(scene.output_fd);
 	return (0);
 }

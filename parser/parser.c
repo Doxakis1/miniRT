@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 09:19:21 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/10/20 12:19:30 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/10/26 10:16:49 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,37 @@ static int	check_required(t_scene *scene)
 	return (EXIT_SUCCESS);
 }
 
+static int	get_output_name(const char *file, t_scene *main_scene)
+{
+	int	size;
+	int	index;
+
+	size  = ft_strlen(file);
+	if (62 < size)
+		return (ERROR_BIG_FILE_NAME);
+	index = 0;
+	while (index < size - 2)
+	{
+		main_scene->file_name[index] = file[index];
+		index++;
+	}
+	main_scene->file_name[index++] = 'p';
+	main_scene->file_name[index++] = 'p';
+	main_scene->file_name[index++] = 'm';
+	main_scene->file_name[index++] = '\0';
+	return (EXIT_SUCCESS);
+}
+
 t_scene	scene_constractor(const char *file)
 {
-	static t_scene	main_scene = {0};
+	static t_scene	main_scene;
 	int				fd;
 	static char		*new_line = NULL;
 
+	ft_bzero(&main_scene, sizeof(t_scene));
+	main_scene.error_catcher = get_output_name(file, &main_scene);
+	if (main_scene.error_catcher)
+		return (main_scene);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		main_scene.error_catcher = OPEN_FAIL;

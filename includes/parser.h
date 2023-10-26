@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 09:19:26 by mkaratzi          #+#    #+#             */
-/*   Updated: 2023/10/23 06:36:12 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/10/26 09:54:43 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define MALLOC_FAILED 5
 # define EXCESS_ELEMENTS 6
 # define INSIDE_OBJECT 7
+# define ERROR_BIG_FILE_NAME 8
 # define LIGHT_SOURCE 0
 # define AMBIENT_LIGHT 1
 # define CAMERA 2
@@ -144,8 +145,8 @@ typedef struct s_hit_data
 
 typedef struct s_scene
 {
-	void			*mlx;
-	void			*win;
+	char			file_name[64];
+	int				output_fd;
 	int				width;
 	int				height;
 	t_light_source	light_sources;

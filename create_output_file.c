@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_window.c                                    :+:      :+:    :+:   */
+/*   create_output_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,33 +12,18 @@
 
 #include "./includes/minirt.h"
 
-int	key_event(int keycode, t_scene *img)
-{
-	if (keycode == 53)
-	{
-		free_all_objects(img->objects, 0);
-		mlx_destroy_window(img->mlx, img->win);
-		exit (0);
-	}
-	return (0);
-}
 
-int	exit_button(t_scene *img)
+int	create_output_file(t_scene *img)
 {
-	free_all_objects(img->objects, 0);
-	mlx_destroy_window(img->mlx, img->win);
-	exit (0);
-	return (0);
-}
-
-int	handle_window(t_scene *img)
-{
+	img->output_fd = open(img->file_name, O_WRONLY | O_TRUNC | O_CREAT, 0666);
+	if (img->output_fd == -1)
+		return (EXIT_FAILURE);
 	img->width = WINDOW_WIDTH;
 	img->height = WINDOW_HEIGHT;
-	img->mlx = mlx_init();
-	img->win = mlx_new_window(img->mlx, img->width, img->height, \
-	"miniRT");
-	mlx_hook(img->win, 2, 1L << 0, &key_event, img);
-	mlx_hook(img->win, 17, 1L << 17, &exit_button, img);
-	return (0);
+	ft_putstr_fd("P3\n", img->output_fd);
+	ft_putnbr_fd(img->width, img->output_fd);
+	ft_putstr_fd(" ", img->output_fd);
+	ft_putnbr_fd(img->height, img->output_fd);
+	ft_putstr_fd("\n", img->output_fd);
+	return (EXIT_SUCCESS);
 }

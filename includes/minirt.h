@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakinen <rmakinen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 10:32:54 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/10/24 10:13:52 by rmakinen         ###   ########.fr       */
+/*   Updated: 2023/10/26 10:07:45 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,12 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <math.h>
-//# include <mlx.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <limits.h>
 # include "parser.h"
 # include "vectors.h"
 # include "../libft/includes/libft.h"
-# include "../mlx/mlx.h"
 
 # define WINDOW_WIDTH 1080
 # define WINDOW_HEIGHT 680
@@ -48,7 +46,7 @@ typedef struct s_sphere		t_sphere;
 int			check_camera(t_scene *scene);
 
 //window
-int			handle_window(t_scene *img);
+int			create_output_file(t_scene *img);
 int			exit_button(t_scene *img);
 
 //scene.c
