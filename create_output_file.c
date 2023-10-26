@@ -25,5 +25,6 @@ int	create_output_file(t_scene *img)
 	ft_putstr_fd(" ", img->output_fd);
 	ft_putnbr_fd(img->height, img->output_fd);
 	ft_putstr_fd("\n", img->output_fd);
+	ft_putstr_fd("255\n", img->output_fd);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: mkaratzi <mkaratzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 09:44:07 by rmakinen          #+#    #+#             */
-/*   Updated: 2023/10/26 10:50:42 by mkaratzi         ###   ########.fr       */
+/*   Updated: 2023/10/26 11:00:18 by mkaratzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,13 @@ static void pixel_to_file(int color, const int fd)
 	u_int8_t holder;
 	
 	color_str = (char *)&color;
-	printf("%x\n", color);
-	holder = color_str[1];
-	ft_putnbr_fd(holder, fd);
-	ft_putstr_fd(" ", fd);
 	holder = color_str[2];
 	ft_putnbr_fd(holder, fd);
 	ft_putstr_fd(" ", fd);
-	holder = color_str[3];
+	holder = color_str[1];
+	ft_putnbr_fd(holder, fd);
+	ft_putstr_fd(" ", fd);
+	holder = color_str[0];
 	ft_putnbr_fd(holder, fd);
 	ft_putstr_fd(" \n", fd);
 	return ;
