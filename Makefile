@@ -87,7 +87,7 @@ $(NAME): $(SRC) $(INCL)
 	@cd libft && $(MAKE)
 	@cc $(FLAGS) -c $(SRC)
 	#@cc $(FLAGS) $(OBJ) -I$(LIB_DIR) libft/libft.a -L /usr/local/include -o $(NAME)
-	@cc $(FLAGS) $(OBJ) libft/libft.a -o $(NAME)
+	@cc $(FLAGS) $(OBJ) libft/libft.a -lm -o $(NAME)
 
 specular: $(SRC) $(INCL)
 	@cd libft && $(MAKE)

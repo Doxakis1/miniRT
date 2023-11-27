@@ -15,7 +15,7 @@ LIB_DIR = includes
 SRC_DIR = sources/
 OBJ_DIR = objects/
 INCLUDES = $(addprefix ./includes/, ft_printf.h libft.h get_next_line.h)
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -c
 CC = cc
 AR = ar rcs
 
